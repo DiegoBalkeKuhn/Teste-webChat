@@ -12,23 +12,26 @@
             text-align: center;
         }
     </style>
-   
-</head>
-     <!-- Webchat Widget -->
-    <!-- Correção 1 e 2: URL completa no src e tag de fechamento correta -->
-    <script src="https://groovy-unsheathe-footpath.ngrok-free.dev/static/webchat/webchat.min.js?v=1790275464983" defer></script>
+    
+    <!-- Webchat Widget -->
     <script>
+    // 1. URL do ngrok adicionada no fetch para carregar o arquivo externo corretamente
+    fetch("https://groovy-unsheathe-footpath.ngrok-free.dev/static/webchat/webchat.min.js?v=1790279737225", { headers: { "ngrok-skip-browser-warning": "1" } })
+      .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.text(); })
+      .then(function (code) { var s = document.createElement("script"); s.text = code; document.head.appendChild(s); })
+      .catch(function (e) { console.error("[Webchat] falha ao carregar o widget:", e); });
+    
     (function boot(){ 
         if (window.NewOmniChat && typeof window.NewOmniChat.init === 'function') { 
             window.NewOmniChat.init({
-              /* Correção 3: URL do servidor preenchida */
+              // 2. URL do ngrok adicionada no server
               "server": "https://groovy-unsheathe-footpath.ngrok-free.dev",
               "channelId": "44",
               "auth": {
                 "mode": "prechat",
                 "prechat": {
-                  "requireName": false,
-                  "requireEmail": false,
+                  "requireName": true,
+                  "requireEmail": true,
                   "rememberIdentity": true,
                   "ui": {
                     "title": "Antes de começar",
@@ -55,10 +58,9 @@
         } 
     })();
     </script>
+</head>
 <body>
     <h1>Meu Site de Teste</h1>
-    <p>O webchat deve aparecer no canto inferior direito.</p>
-
-    
+    <p>O webchat deve aparecer no canto inferior direito, burlando a tela de aviso do ngrok.</p>
 </body>
 </html>
