@@ -18,43 +18,37 @@
     <p>O webchat deve aparecer no canto inferior direito.</p>
 
     <!-- Webchat Widget -->
-    <script src="https://omni-dev-athos-api.sejat1.com.br/static/webchat/webchat.min.js?v=1790249011464" defer></script>
-    <script>
-    (function boot(){ 
-        if (window.NewOmniChat && typeof window.NewOmniChat.init === 'function') { 
-            window.NewOmniChat.init({
-              "server": "https://omni-dev-athos-api.sejat1.com.br",
-              "channelId": "6",
-              "auth": {
-                "mode": "prechat",
-                "prechat": {
-                  "requireName": true,
-                  "requireEmail": true,
-                  "rememberIdentity": true,
-                  "ui": {
-                    "title": "Antes de começar",
-                    "subtitle": "Precisamos dos seus dados para continuar",
-                    "nameLabel": "Seu nome",
-                    "namePlaceholder": "Ex.: Maria Silva",
-                    "emailLabel": "Seu e-mail",
-                    "emailPlaceholder": "Ex.: maria@exemplo.com",
-                    "consentText": "Concordo em ser contatado(a) por este canal.",
-                    "submitText": "Iniciar atendimento",
-                    "invalidEmail": "Digite um e-mail válido."
-                  }
-                }
-              },
-              "theme": {
-                "primary": "#8b5cf6",
-                "darkMode": true
-              },
-              "position": "bottom-right",
-              "locale": "pt-BR"
-            }); 
-        } else { 
-            setTimeout(boot, 50); 
-        } 
-    })();
-    </script>
+<script src="/static/webchat/webchat.min.js?v=1790275464983" defer><\/script>
+<script>
+(function boot(){ if (window.NewOmniChat && typeof window.NewOmniChat.init === 'function') { window.NewOmniChat.init({
+  "server": "",
+  "channelId": "44",
+  "auth": {
+    "mode": "prechat",
+    "prechat": {
+      "requireName": false,
+      "requireEmail": false,
+      "rememberIdentity": true,
+      "ui": {
+        "title": "Antes de começar",
+        "subtitle": "Precisamos dos seus dados para continuar",
+        "nameLabel": "Seu nome",
+        "namePlaceholder": "Ex.: Maria Silva",
+        "emailLabel": "Seu e-mail",
+        "emailPlaceholder": "Ex.: maria@exemplo.com",
+        "consentText": "Concordo em ser contatado(a) por este canal.",
+        "submitText": "Iniciar atendimento",
+        "invalidEmail": "Digite um e-mail válido."
+      }
+    }
+  },
+  "theme": {
+    "primary": "#8b5cf6",
+    "darkMode": true
+  },
+  "position": "bottom-right",
+  "locale": "pt-BR"
+}); } else { setTimeout(boot, 50); } })();
+<\/script>
 </body>
 </html>
