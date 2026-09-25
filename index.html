@@ -14,50 +14,41 @@
     </style>
     
     <!-- Webchat Widget -->
-    <script>
-    // 1. URL do ngrok adicionada no fetch para carregar o arquivo externo corretamente
-    fetch("https://groovy-unsheathe-footpath.ngrok-free.dev/static/webchat/webchat.min.js?v=1790279737225", { headers: { "ngrok-skip-browser-warning": "1" } })
-      .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.text(); })
-      .then(function (code) { var s = document.createElement("script"); s.text = code; document.head.appendChild(s); })
-      .catch(function (e) { console.error("[Webchat] falha ao carregar o widget:", e); });
-    
-    (function boot(){ 
-        if (window.NewOmniChat && typeof window.NewOmniChat.init === 'function') { 
-            window.NewOmniChat.init({
-              // 2. URL do ngrok adicionada no server
-              "server": "https://groovy-unsheathe-footpath.ngrok-free.dev",
-              "channelId": "44",
-              "auth": {
-                "mode": "prechat",
-                "prechat": {
-                  "requireName": true,
-                  "requireEmail": true,
-                  "rememberIdentity": true,
-                  "ui": {
-                    "title": "Antes de começar",
-                    "subtitle": "Precisamos dos seus dados para continuar",
-                    "nameLabel": "Seu nome",
-                    "namePlaceholder": "Ex.: Maria Silva",
-                    "emailLabel": "Seu e-mail",
-                    "emailPlaceholder": "Ex.: maria@exemplo.com",
-                    "consentText": "Concordo em ser contatado(a) por este canal.",
-                    "submitText": "Iniciar atendimento",
-                    "invalidEmail": "Digite um e-mail válido."
-                  }
-                }
-              },
-              "theme": {
-                "primary": "#8b5cf6",
-                "darkMode": true
-              },
-              "position": "bottom-right",
-              "locale": "pt-BR"
-            }); 
-        } else { 
-            setTimeout(boot, 50); 
-        } 
-    })();
-    </script>
+<script>
+fetch("/static/webchat/webchat.min.js?v=1790341242933", { cache: "no-cache", headers: { "ngrok-skip-browser-warning": "1" } })
+  .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.text(); })
+  .then(function (code) { var s = document.createElement("script"); s.text = code; document.head.appendChild(s); })
+  .catch(function (e) { console.error("[Webchat] falha ao carregar o widget:", e); });
+(function boot(){ if (window.NewOmniChat && typeof window.NewOmniChat.init === 'function') { window.NewOmniChat.init({
+  "server": "",
+  "channelId": "44",
+  "auth": {
+    "mode": "prechat",
+    "prechat": {
+      "requireName": true,
+      "requireEmail": true,
+      "rememberIdentity": true,
+      "ui": {
+        "title": "Antes de começar",
+        "subtitle": "Precisamos dos seus dados para continuar",
+        "nameLabel": "Seu nome",
+        "namePlaceholder": "Ex.: Maria Silva",
+        "emailLabel": "Seu e-mail",
+        "emailPlaceholder": "Ex.: maria@exemplo.com",
+        "consentText": "Concordo em ser contatado(a) por este canal.",
+        "submitText": "Iniciar atendimento",
+        "invalidEmail": "Digite um e-mail válido."
+      }
+    }
+  },
+  "theme": {
+    "primary": "#8b5cf6",
+    "darkMode": true
+  },
+  "position": "bottom-right",
+  "locale": "pt-BR"
+}); } else { setTimeout(boot, 50); } })();
+</script>
 </head>
 <body>
     <h1>Meu Site de Teste</h1>
