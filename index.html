@@ -12,16 +12,12 @@
             text-align: center;
         }
     </style>
-    
     <!-- Webchat Widget -->
+<script src="https://omniapi-dev.sejat1.com.br/static/webchat/webchat.min.js?v=1790703874977" defer></script>
 <script>
-fetch("https://groovy-unsheathe-footpath.ngrok-free.dev/static/webchat/webchat.min.js?v=1790603812736", { cache: "no-cache", headers: { "ngrok-skip-browser-warning": "1" } })
-  .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.text(); })
-  .then(function (code) { var s = document.createElement("script"); s.text = code; document.head.appendChild(s); })
-  .catch(function (e) { console.error("[Webchat] falha ao carregar o widget:", e); });
 (function boot(){ if (window.NewOmniChat && typeof window.NewOmniChat.init === 'function') { window.NewOmniChat.init({
-  "server": "https://groovy-unsheathe-footpath.ngrok-free.dev",
-  "channelId": "44",
+  "server": "https://omniapi-dev.sejat1.com.br",
+  "channelId": "49",
   "auth": {
     "mode": "prechat",
     "prechat": {
@@ -42,47 +38,8 @@ fetch("https://groovy-unsheathe-footpath.ngrok-free.dev/static/webchat/webchat.m
     }
   },
   "theme": {
-    "primary": "#ced119",
-    "primaryText": "#ffffff",
-    "darkMode": true,
-    "dark": {
-      "background": "#0b1220",
-      "surface": "#0e172a",
-      "messagesBackground": "#0b1020",
-      "agentBubble": "#111827",
-      "agentText": "#e5e7eb",
-      "text": "#e5e7eb",
-      "mutedText": "#cbd5e1",
-      "border": "#1f2937",
-      "inputBackground": "#0b1220",
-      "inputBorder": "#334155",
-      "resizeHandle": "#64748b",
-      "mediaBackground": "#020617",
-      "fileBackground": "rgba(15,23,42,.42)",
-      "error": "#fecaca",
-      "failedText": "#fecaca",
-      "overlay": "rgba(0,0,0,.45)",
-      "shadow": "rgba(0,0,0,.35)"
-    },
-    "light": {
-      "background": "#ffffff",
-      "surface": "#ffffff",
-      "messagesBackground": "#f8fafc",
-      "agentBubble": "#e2e8f0",
-      "agentText": "#0f172a",
-      "text": "#0f172a",
-      "mutedText": "#475569",
-      "border": "#e2e8f0",
-      "inputBackground": "#ffffff",
-      "inputBorder": "#cbd5e1",
-      "resizeHandle": "#94a3b8",
-      "mediaBackground": "#e2e8f0",
-      "fileBackground": "rgba(15,23,42,.08)",
-      "error": "#b91c1c",
-      "failedText": "#fecaca",
-      "overlay": "rgba(15,23,42,.35)",
-      "shadow": "rgba(15,23,42,.18)"
-    }
+    "primary": "#8b5cf6",
+    "darkMode": true
   },
   "position": "bottom-right",
   "locale": "pt-BR"
