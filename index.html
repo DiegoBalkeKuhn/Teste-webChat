@@ -13,7 +13,7 @@
         }
     </style>
     <!-- Webchat Widget -->
-<script src="https://omniapi-dev.sejat1.com.br/static/webchat/webchat.min.js?v=1790703874977" defer></script>
+<script src="https://omniapi-dev.sejat1.com.br/static/webchat/webchat.min.js?v=1790704087907" async></script>
 <script>
 (function boot(){ if (window.NewOmniChat && typeof window.NewOmniChat.init === 'function') { window.NewOmniChat.init({
   "server": "https://omniapi-dev.sejat1.com.br",
@@ -29,17 +29,71 @@
         "subtitle": "Precisamos dos seus dados para continuar",
         "nameLabel": "Seu nome",
         "namePlaceholder": "Ex.: Maria Silva",
-        "emailLabel": "Seu e-mail",
-        "emailPlaceholder": "Ex.: maria@exemplo.com",
+        "emailLabel": "Seu e-mail ou telefone",
+        "emailPlaceholder": "Ex.: maria@exemplo.com ou (51) 99999-9999",
         "consentText": "Concordo em ser contatado(a) por este canal.",
         "submitText": "Iniciar atendimento",
-        "invalidEmail": "Digite um e-mail válido."
+        "invalidEmail": "Digite um e-mail ou um telefone com DDD."
       }
     }
   },
   "theme": {
-    "primary": "#8b5cf6",
-    "darkMode": true
+    "primary": "#1976d2",
+    "primaryText": "#ffffff",
+    "darkMode": true,
+    "allowModeToggle": true,
+    "dark": {
+      "background": "#0b1220",
+      "surface": "#0e172a",
+      "messagesBackground": "#0b1020",
+      "text": "#e5e7eb",
+      "mutedText": "#cbd5e1",
+      "border": "#1f2937",
+      "agentBubble": "#111827",
+      "agentText": "#e5e7eb",
+      "inputBackground": "#0b1220",
+      "inputBorder": "#334155",
+      "resizeHandle": "#64748b",
+      "mediaBackground": "#020617",
+      "fileBackground": "#0f172a6b",
+      "error": "#fecaca",
+      "failedText": "#fecaca",
+      "overlay": "#00000073",
+      "shadow": "#00000059"
+    },
+    "light": {
+      "background": "#ffffff",
+      "surface": "#ffffff",
+      "messagesBackground": "#f8fafc",
+      "text": "#0f172a",
+      "mutedText": "#475569",
+      "border": "#e2e8f0",
+      "agentBubble": "#e2e8f0",
+      "agentText": "#0f172a",
+      "inputBackground": "#ffffff",
+      "inputBorder": "#cbd5e1",
+      "resizeHandle": "#94a3b8",
+      "mediaBackground": "#e2e8f0",
+      "fileBackground": "#0f172a14",
+      "error": "#b91c1c",
+      "failedText": "#fecaca",
+      "overlay": "#0f172a59",
+      "shadow": "#0f172a2e"
+    }
+  },
+  "widget": {
+    "shape": "rounded",
+    "position": "right",
+    "launcherStyle": "icon-text",
+    "launcherIcon": "chat",
+    "launcherImage": "",
+    "launcherText": "Chat",
+    "title": "Atendimento",
+    "placeholder": "Digite sua mensagem...",
+    "sendStyle": "text",
+    "sendText": "Enviar",
+    "attachIcon": "paperclip",
+    "attachImage": ""
   },
   "position": "bottom-right",
   "locale": "pt-BR"
