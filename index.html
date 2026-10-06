@@ -1,81 +1,137 @@
-a/AppData\Local\hermes\cache\scratch\webchat-teste-corrigido.html → b/AppData\Local\hermes\cache\scratch\webchat-teste-corrigido.html
-@@ -0,0 +1,137 @@
-+<!DOCTYPE html>
-+<html lang="pt-BR">
-+<head>
-+    <meta charset="UTF-8">
-+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-+    <title>Teste do Webchat</title>
-+    <style>
-+        body {
-+            font-family: Arial, sans-serif;
-+            background-color: #f4f4f9;
-+            padding: 50px;
-+            text-align: center;
-+        }
-+    </style>
-+
-+    <!-- Webchat Widget (loader ngrok-safe: <script src> comum não manda
-+         header e o ngrok free devolve a página de aviso (HTML) no lugar do
-+         JS. Por isso o JS é buscado via fetch, que pode mandar o header
-+         "ngrok-skip-browser-warning", e injetado manualmente. -->
-+    <script>
-+    (function () {
-+      var SERVER = "https://groovy-unsheathe-footpath.ngrok-free.dev";
-+      var SCRIPT_URL = SERVER + "/static/webchat/webchat.min.js?v=1791289118639";
-+      var NGROK_HEADERS = { "ngrok-skip-browser-warning": "1" };
-+
-+      function boot() {
-+        if (window.NewOmniChat && typeof window.NewOmniChat.init === "function") {
-+          window.NewOmniChat.init({
-+            "server": SERVER,
-+            "channelId": "44",
-+            "auth": {
-+              "mode": "prechat",
-+              "prechat": {
-+                "requireName": true,
-+                "requireEmail": true,
-+                "rememberIdentity": true,
-+                "ui": {
-+                  "title": "Antes de começar",
-+                  "subtitle": "Precisamos dos seus dados para continuar",
-+                  "nameLabel": "Seu nome",
-+                  "namePlaceholder": "Ex.: Maria Silva",
-+                  "emailLabel": "Seu e-mail ou telefone",
-+                  "emailPlaceholder": "Ex.: maria@exemplo.com ou (51) 99999-9999",
-+                  "consentText": "Concordo em ser contatado(a) por este canal.",
-+                  "submitText": "Iniciar atendimento",
-+                  "invalidEmail": "Digite um e-mail ou um telefone com DDD."
-+                }
-+              }
-+            },
-+            "theme": {
-+              "primary": "#ced119",
-+              "primaryText": "#ffffff",
-+              "darkMode": true,
-+              "allowModeToggle": true,
-+              "dark": {
-+                "background": "#0b1220",
-+                "surface": "#0e172a",
-+                "messagesBackground": "#0b1020",
-+                "text": "#e5e7eb",
-+                "mutedText": "#cbd5e1",
-+                "border": "#1f2937",
-+                "agentBubble": "#111827",
-+                "agentText": "#e5e7eb",
-+                "inputBackground": "#0b1220",
-+                "inputBorder": "#334155",
-+                "resizeHandle": "#64748b",
-+                "mediaBackground": "#020617",
-+                "fileBackground": "#0f172a6b",
-+                "error": "#fecaca",
-+                "failedText": "#fecaca",
-+                "overlay": "#00000073",
-+                "shadow": "#00000059"
-+              },
-+              "light": {
-+                "background": "#ffffff",
-+                "surface": "#ffffff",
-+                "messagesBackground": "#f8fafc",
-+                "text": "#0f172a",
-… omitted 59 diff line(s) across 1 additional file(s)/section(s)
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste do Webchat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            padding: 50px;
+            text-align: center;
+        }
+    </style>
+
+    <!-- Webchat Widget (loader ngrok-safe: <script src> comum não manda
+         header e o ngrok free devolve a página de aviso (HTML) no lugar do
+         JS. Por isso o JS é buscado via fetch, que pode mandar o header
+         "ngrok-skip-browser-warning", e injetado manualmente. -->
+    <script>
+    (function () {
+      var SERVER = "https://groovy-unsheathe-footpath.ngrok-free.dev";
+      var SCRIPT_URL = SERVER + "/static/webchat/webchat.min.js?v=1791289118639";
+      var NGROK_HEADERS = { "ngrok-skip-browser-warning": "1" };
+
+      function boot() {
+        if (window.NewOmniChat && typeof window.NewOmniChat.init === "function") {
+          window.NewOmniChat.init({
+            "server": SERVER,
+            "channelId": "44",
+            "auth": {
+              "mode": "prechat",
+              "prechat": {
+                "requireName": true,
+                "requireEmail": true,
+                "rememberIdentity": true,
+                "ui": {
+                  "title": "Antes de começar",
+                  "subtitle": "Precisamos dos seus dados para continuar",
+                  "nameLabel": "Seu nome",
+                  "namePlaceholder": "Ex.: Maria Silva",
+                  "emailLabel": "Seu e-mail ou telefone",
+                  "emailPlaceholder": "Ex.: maria@exemplo.com ou (51) 99999-9999",
+                  "consentText": "Concordo em ser contatado(a) por este canal.",
+                  "submitText": "Iniciar atendimento",
+                  "invalidEmail": "Digite um e-mail ou um telefone com DDD."
+                }
+              }
+            },
+            "theme": {
+              "primary": "#ced119",
+              "primaryText": "#ffffff",
+              "darkMode": true,
+              "allowModeToggle": true,
+              "dark": {
+                "background": "#0b1220",
+                "surface": "#0e172a",
+                "messagesBackground": "#0b1020",
+                "text": "#e5e7eb",
+                "mutedText": "#cbd5e1",
+                "border": "#1f2937",
+                "agentBubble": "#111827",
+                "agentText": "#e5e7eb",
+                "inputBackground": "#0b1220",
+                "inputBorder": "#334155",
+                "resizeHandle": "#64748b",
+                "mediaBackground": "#020617",
+                "fileBackground": "#0f172a6b",
+                "error": "#fecaca",
+                "failedText": "#fecaca",
+                "overlay": "#00000073",
+                "shadow": "#00000059"
+              },
+              "light": {
+                "background": "#ffffff",
+                "surface": "#ffffff",
+                "messagesBackground": "#f8fafc",
+                "text": "#0f172a",
+                "mutedText": "#475569",
+                "border": "#e2e8f0",
+                "agentBubble": "#e2e8f0",
+                "agentText": "#0f172a",
+                "inputBackground": "#ffffff",
+                "inputBorder": "#cbd5e1",
+                "resizeHandle": "#94a3b8",
+                "mediaBackground": "#e2e8f0",
+                "fileBackground": "#0f172a14",
+                "error": "#b91c1c",
+                "failedText": "#fecaca",
+                "overlay": "#0f172a59",
+                "shadow": "#0f172a2e"
+              }
+            },
+            "widget": {
+              "shape": "rounded",
+              "position": "right",
+              "launcherStyle": "icon-text",
+              "launcherIcon": "chat",
+              "launcherImage": "",
+              "launcherText": "Chat",
+              "title": "Atendimento",
+              "placeholder": "Digite sua mensagem...",
+              "sendStyle": "text",
+              "sendText": "Enviar",
+              "attachIcon": "paperclip",
+              "attachImage": ""
+            },
+            "position": "bottom-right",
+            "locale": "pt-BR"
+          });
+          return;
+        }
+        setTimeout(boot, 50);
+      }
+
+      fetch(SCRIPT_URL, { headers: NGROK_HEADERS })
+        .then(function (r) {
+          if (!r.ok) throw new Error("HTTP " + r.status);
+          return r.text();
+        })
+        .then(function (code) {
+          var tag = document.createElement("script");
+          tag.text = code;
+          document.head.appendChild(tag);
+          boot();
+        })
+        .catch(function (err) {
+          console.error("Webchat: falha ao carregar o widget via ngrok:", err);
+        });
+    })();
+    </script>
+</head>
+<body>
+    <h1>Meu Site de Teste</h1>
+    <p>O webchat deve aparecer no canto inferior direito, burlando a tela de aviso do ngrok.</p>
+</body>
+</html>
