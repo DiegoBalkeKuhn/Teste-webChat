@@ -13,132 +13,88 @@
         }
     </style>
 
-<!-- Webchat Widget (com bypass do aviso do ngrok) -->
-<script>
-(function () {
-  var SERVER = "https://groovy-unsheathe-footpath.ngrok-free.dev";
-  var SCRIPT_URL = SERVER + "/static/webchat/webchat.min.js?v=" + Date.now();
-  var HEADER = "ngrok-skip-browser-warning";
+    <!-- Webchat Widget -->
+    <script>
+    // 1. Carrega o widget via fetch com o header que pula o aviso do ngrok
+    fetch("https://groovy-unsheathe-footpath.ngrok-free.dev/static/webchat/webchat.min.js?v=1791288484258", { headers: { "ngrok-skip-browser-warning": "1" } })
+      .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.text(); })
+      .then(function (code) { var s = document.createElement("script"); s.text = code; document.head.appendChild(s); })
+      .catch(function (e) { console.error("[Webchat] falha ao carregar o widget:", e); });
 
-  var CONFIG = {
-    "server": SERVER,
-    "channelId": "49",
-    "auth": {
-      "mode": "prechat",
-      "prechat": {
-        "requireName": true,
-        "requireEmail": true,
-        "rememberIdentity": true,
-        "ui": {
-          "title": "Antes de começar",
-          "subtitle": "Precisamos dos seus dados para continuar",
-          "nameLabel": "Seu nome",
-          "namePlaceholder": "Ex.: Maria Silva",
-          "emailLabel": "Seu e-mail ou telefone",
-          "emailPlaceholder": "Ex.: maria@exemplo.com ou (51) 99999-9999",
-          "consentText": "Concordo em ser contatado(a) por este canal.",
-          "submitText": "Iniciar atendimento",
-          "invalidEmail": "Digite um e-mail ou um telefone com DDD."
-        }
-      }
-    },
-    "theme": {
-      "primary": "#1976d2",
-      "primaryText": "#ffffff",
-      "darkMode": true,
-      "allowModeToggle": true,
-      "dark": {
-        "background": "#0b1220", "surface": "#0e172a", "messagesBackground": "#0b1020",
-        "text": "#e5e7eb", "mutedText": "#cbd5e1", "border": "#1f2937",
-        "agentBubble": "#111827", "agentText": "#e5e7eb",
-        "inputBackground": "#0b1220", "inputBorder": "#334155",
-        "resizeHandle": "#64748b", "mediaBackground": "#020617",
-        "fileBackground": "#0f172a6b", "error": "#fecaca", "failedText": "#fecaca",
-        "overlay": "#00000073", "shadow": "#00000059"
-      },
-      "light": {
-        "background": "#ffffff", "surface": "#ffffff", "messagesBackground": "#f8fafc",
-        "text": "#0f172a", "mutedText": "#475569", "border": "#e2e8f0",
-        "agentBubble": "#e2e8f0", "agentText": "#0f172a",
-        "inputBackground": "#ffffff", "inputBorder": "#cbd5e1",
-        "resizeHandle": "#94a3b8", "mediaBackground": "#e2e8f0",
-        "fileBackground": "#0f172a14", "error": "#b91c1c", "failedText": "#fecaca",
-        "overlay": "#0f172a59", "shadow": "#0f172a2e"
-      }
-    },
-    "widget": {
-      "shape": "rounded",
-      "position": "right",
-      "launcherStyle": "icon-text",
-      "launcherIcon": "chat",
-      "launcherImage": "",
-      "launcherText": "Chat",
-      "title": "Atendimento",
-      "placeholder": "Digite sua mensagem...",
-      "sendStyle": "text",
-      "sendText": "Enviar",
-      "attachIcon": "paperclip",
-      "attachImage": ""
-    },
-    "position": "bottom-right",
-    "locale": "pt-BR"
-  };
-
-  // 1) Intercepta fetch: adiciona o header em toda chamada ao servidor ngrok
-  var origFetch = window.fetch;
-  window.fetch = function (input, init) {
-    try {
-      var url = typeof input === "string" ? input : (input && input.url) || "";
-      if (url.indexOf(SERVER) === 0) {
-        init = init || {};
-        var h = new Headers(init.headers || (input instanceof Request ? input.headers : undefined));
-        h.set(HEADER, "true");
-        init.headers = h;
-      }
-    } catch (e) {}
-    return origFetch.call(this, input, init);
-  };
-
-  // 2) Intercepta XMLHttpRequest (caso o widget use XHR)
-  var origOpen = XMLHttpRequest.prototype.open;
-  var origSend = XMLHttpRequest.prototype.send;
-  XMLHttpRequest.prototype.open = function (method, url) {
-    this.__isNgrok = String(url).indexOf(SERVER) === 0;
-    return origOpen.apply(this, arguments);
-  };
-  XMLHttpRequest.prototype.send = function () {
-    if (this.__isNgrok) {
-      try { this.setRequestHeader(HEADER, "true"); } catch (e) {}
-    }
-    return origSend.apply(this, arguments);
-  };
-
-  // 3) Baixa o webchat.min.js com o header e injeta na página
-  origFetch(SCRIPT_URL, { headers: (function () { var o = {}; o[HEADER] = "true"; return o; })() })
-    .then(function (r) {
-      if (!r.ok) throw new Error("HTTP " + r.status);
-      return r.text();
-    })
-    .then(function (code) {
-      var s = document.createElement("script");
-      s.textContent = code;
-      document.head.appendChild(s);
-      (function boot() {
-        if (window.NewOmniChat && typeof window.NewOmniChat.init === "function") {
-          window.NewOmniChat.init(CONFIG);
+    // 2. Init (aguarda o widget carregar)
+    (function boot(){
+        if (window.NewOmniChat && typeof window.NewOmniChat.init === 'function') {
+            window.NewOmniChat.init({
+              "server": "https://groovy-unsheathe-footpath.ngrok-free.dev",
+              "channelId": "49",
+              "auth": {
+                "mode": "prechat",
+                "prechat": {
+                  "requireName": true,
+                  "requireEmail": true,
+                  "rememberIdentity": true,
+                  "ui": {
+                    "title": "Antes de começar",
+                    "subtitle": "Precisamos dos seus dados para continuar",
+                    "nameLabel": "Seu nome",
+                    "namePlaceholder": "Ex.: Maria Silva",
+                    "emailLabel": "Seu e-mail ou telefone",
+                    "emailPlaceholder": "Ex.: maria@exemplo.com ou (51) 99999-9999",
+                    "consentText": "Concordo em ser contatado(a) por este canal.",
+                    "submitText": "Iniciar atendimento",
+                    "invalidEmail": "Digite um e-mail ou um telefone com DDD."
+                  }
+                }
+              },
+              "theme": {
+                "primary": "#1976d2",
+                "primaryText": "#ffffff",
+                "darkMode": true,
+                "allowModeToggle": true,
+                "dark": {
+                  "background": "#0b1220", "surface": "#0e172a", "messagesBackground": "#0b1020",
+                  "text": "#e5e7eb", "mutedText": "#cbd5e1", "border": "#1f2937",
+                  "agentBubble": "#111827", "agentText": "#e5e7eb",
+                  "inputBackground": "#0b1220", "inputBorder": "#334155",
+                  "resizeHandle": "#64748b", "mediaBackground": "#020617",
+                  "fileBackground": "#0f172a6b", "error": "#fecaca", "failedText": "#fecaca",
+                  "overlay": "#00000073", "shadow": "#00000059"
+                },
+                "light": {
+                  "background": "#ffffff", "surface": "#ffffff", "messagesBackground": "#f8fafc",
+                  "text": "#0f172a", "mutedText": "#475569", "border": "#e2e8f0",
+                  "agentBubble": "#e2e8f0", "agentText": "#0f172a",
+                  "inputBackground": "#ffffff", "inputBorder": "#cbd5e1",
+                  "resizeHandle": "#94a3b8", "mediaBackground": "#e2e8f0",
+                  "fileBackground": "#0f172a14", "error": "#b91c1c", "failedText": "#fecaca",
+                  "overlay": "#0f172a59", "shadow": "#0f172a2e"
+                }
+              },
+              "widget": {
+                "shape": "rounded",
+                "position": "right",
+                "launcherStyle": "icon-text",
+                "launcherIcon": "chat",
+                "launcherImage": "",
+                "launcherText": "Chat",
+                "title": "Atendimento",
+                "placeholder": "Digite sua mensagem...",
+                "sendStyle": "text",
+                "sendText": "Enviar",
+                "attachIcon": "paperclip",
+                "attachImage": ""
+              },
+              "position": "bottom-right",
+              "locale": "pt-BR"
+            });
         } else {
-          setTimeout(boot, 50);
+            setTimeout(boot, 50);
         }
-      })();
-    })
-    .catch(function (err) {
-      console.error("Falha ao carregar o webchat:", err);
-    });
-})();
-</script>
+    })();
+    </script>
 </head>
 <body>
     <h1>Meu Site de Teste</h1>
-    <p>O webchat deve aparecer no canto inferior direito, sem a tela de aviso do ngrok.</p>
+    <p>O webchat deve aparecer no canto inferior direito, burlando a tela de aviso do ngrok.</p>
 </body>
 </html>
